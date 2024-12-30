@@ -219,6 +219,120 @@
     font-size: 0.95rem;
 }
 
+/* Grid Layout for Cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Card Styling */
+.card {
+    perspective: 1000px;
+    cursor: pointer;
+    width: 100%;
+    height: 300px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out;
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Card Front and Back */
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--surface);
+    color: var(--text);
+}
+
+.card-front {
+    z-index: 2;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+/* Typography for Cards */
+.card-front h3,
+.card-back h3 {
+    font-size: 1.25rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.card-front .role,
+.card-front .dates,
+.card-back p {
+    font-size: 1rem;
+    color: var(--subtle-text);
+    margin: 0.25rem 0;
+}
+
+.card-front strong {
+    color: var(--accent);
+}
+/* Skills Grid in Experience Cards */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+/* Skill Tag Styling */
+.skill-tag {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover Effect */
+.skill-tag:hover {
+    background-color: var(--accent);
+    color: var(--surface);
+    cursor: pointer;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        height: 350px;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
     </style>
 </head>
@@ -229,8 +343,9 @@
             <div class="logo">Likhitha</div>
             <div class="nav-links">
                 <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
                 <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                
             </div>
         </div>
     </nav>
@@ -345,27 +460,80 @@
         </div>
     </section>
 
-    <!-- <section id="projects">
+   
+
+    <section id="experience">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="/path/to/project1.jpg" alt="Project 1" class="project-img">
-                    <div class="project-content">
-                        <h3>Music Recommendation System</h3>
-                        <p>An advanced recommendation engine using collaborative filtering and deep learning.</p>
+            <h2 class="section-title">Experience</h2>
+            <div class="card-grid">
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Stanford Research Institute International (SRI)</h3>
+                            <p class="role">AI Research Intern</p>
+                            <p class="dates">June 2024 - Dec 2024</p>
+                            <div class="skills-grid">
+                                <span class="skill-tag">Transformers</span>
+                                <span class="skill-tag">NLP</span>
+                                <span class="skill-tag">Deep Learning</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>What I did:</h3>
+                            <p>Developed a transformer-based classification system achieving 90% accuracy.</p>
+                            <p>Collaborated with researchers to optimize AI solutions for automation.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <img src="/path/to/project2.jpg" alt="Project 2" class="project-img">
-                    <div class="project-content">
-                        <h3>Image Classification</h3>
-                        <p>Deployed a high-performance computer vision model using TensorFlow and PyTorch.</p>
+    
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Intellect Design Arena</h3>
+                            <p class="role">Machine Learning Intern</p>
+                            <p class="dates">Jan 2023 - April 2023</p>
+                            <div class="skills-grid">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">TensorFlow</span>
+                                <span class="skill-tag">Data Analytics</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>What I did:</h3>
+                            <p>Developed machine learning models for financial analytics, improving prediction accuracy by 20%.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Bridgera</h3>
+                            <p class="role">Software Developer Intern</p>
+                            <p class="dates">April 2023 - July 2023</p>
+                            <div class="skills-grid">
+                                <span class="skill-tag">IoT</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">API Development</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>What I did:</h3>
+                            <p>Contributed to the development of IoT-based software applications.</p>
+                            <p>Enhanced system efficiency by 25% through optimized coding practices.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
+    
+    
+    
+    
     <section id="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
@@ -401,23 +569,7 @@
     </section>
     
 
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>AI Research Intern</h3>
-                    <p>Stanford Research Institute (SRI) • 2024</p>
-                    <p>Developed a transformer-based classification system achieving 90% accuracy.</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>ML Engineer Intern</h3>
-                    <p>AI Solutions Inc • 2023</p>
-                    <p>Built scalable ML pipelines processing millions of requests daily.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
     <script>
@@ -463,6 +615,14 @@
                 }
             }
         });
+    </script>
+    <script>
+        document.querySelectorAll('.card').forEach((card) => {
+    card.addEventListener('click', () => {
+        card.classList.toggle('is-flipped');
+    });
+});
+
     </script>
 </body>
 </html>
